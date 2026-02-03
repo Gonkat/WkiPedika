@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Учебный макет входа</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+        }
+
+        /* iframe-обёртка */
+        .iframe-wrapper {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: brightness(0.95);
+        }
+
+        /* Фишинговый оверлей */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .alert-box {
+            background: #ffffff;
+            width: 360px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            animation: popup 0.3s ease;
+        }
+
+        @keyframes popup {
+            from { transform: scale(0.9); opacity: 0; }
+            to   { transform: scale(1); opacity: 1; }
+        }
+
+        .alert-box h3 {
+            margin-top: 0;
+            color: #c62828;
+        }
+
+        .alert-box input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .alert-box button {
+            width: 100%;
+            padding: 10px;
+            background: #c62828;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+            margin-top: 10px;
+        }
+
+        .alert-box button:hover {
+            background: #b71c1c;
+        }
+
+        .note {
+            margin-top: 12px;
+            font-size: 12px;
+            color: #555;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="iframe-wrapper">
+    <!-- ТУТ ТВОЙ САЙТ -->
+    <iframe src="https://ru.wikipedia.org"></iframe>
+</div>
+
+<div class="overlay" id="overlay">
+    <div class="alert-box">
+        <h3>⚠️ Подозрительная активность</h3>
+        <p>
+            Мы заметили необычный вход в аккаунт.<br>
+            Пожалуйста, подтвердите данные, иначе доступ будет временно ограничен.
+        </p>
+
+        <input type="text" placeholder="Email или логин">
+        <input type="password" placeholder="Пароль">
+
+        <button onclick="showWarning()">Подтвердить</button>
+
+        <div class="note">
+            Учебный макет. Данные никуда не отправляются.
+        </div>
+    </div>
+</div>
+
+<script>
+    // Показ фишингового окна через 25 секунд
+    setTimeout(() => {
+        document.getElementById('overlay').style.display = 'flex';
+    }, 25000);
+
+    function showWarning() {
+        alert(
+            "❗ ВНИМАНИЕ\n\n" +
+            "Это был учебный пример фишинговой атаки.\n\n" +
+            "Настоящие сайты НИКОГДА не просят вводить пароль во всплывающих окнах."
+        );
+    }
+</script>
+
+</body>
+</html>
